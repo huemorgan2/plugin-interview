@@ -29,9 +29,10 @@ log = logging.getLogger("plugin-interview")
 class InterviewPlugin(LunaPlugin):
     manifest = PluginManifest(
         name="plugin-interview",
+        shown_name="Interview",
         icon="messages-square",
         image="assets/icon.png",
-        version="0.1.2",
+        version="0.1.3",
         description="Adaptive knowledge-elicitation interviews → structured briefs.",
         category="global",
         license="MIT",
