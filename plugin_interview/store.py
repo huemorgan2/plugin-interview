@@ -16,11 +16,15 @@ from sqlalchemy.ext.asyncio import AsyncSession, async_sessionmaker
 
 from . import service
 from .models import (
+    InterviewMeta,
     InterviewSession,
     InterviewTopic,
     InterviewTurn,
 )
 from .service import TopicView
+
+# Marks that the post-install greeting has already been delivered once.
+_INSTALL_GREETED_KEY = "install_greeted"
 
 
 class InterviewNotFound(Exception):
@@ -50,6 +54,19 @@ def _to_view(t: InterviewTopic) -> TopicView:
 class InterviewStore:
     def __init__(self, session_factory: async_sessionmaker[AsyncSession]) -> None:
         self._sf = session_factory
+
+    async def was_install_greeted(self) -> bool:
+        """True once the one-time post-install greeting has been recorded."""
+        async with self._sf() as s:
+            row = await s.get(InterviewMeta, _INSTALL_GREETED_KEY)
+            return row is not None
+
+    async def mark_install_greeted(self) -> None:
+        """Record that the post-install greeting was delivered (idempotent)."""
+        async with self._sf() as s:
+            if await s.get(InterviewMeta, _INSTALL_GREETED_KEY) is None:
+                s.add(InterviewMeta(key=_INSTALL_GREETED_KEY, value="1"))
+                await s.commit()
 
     async def create(
         self,

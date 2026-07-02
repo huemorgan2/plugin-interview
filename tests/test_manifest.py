@@ -25,8 +25,8 @@ def test_identity():
 def test_tool_and_table_counts():
     assert MANIFEST["requires"]["tools"] == 9
     assert len(MANIFEST["tools"]) == 9
-    assert MANIFEST["requires"]["tables"] == 3
-    assert len(MANIFEST["db_tables"]) == 3
+    assert MANIFEST["requires"]["tables"] == 4
+    assert len(MANIFEST["db_tables"]) == 4
 
 
 def test_db_table_names():
@@ -34,6 +34,7 @@ def test_db_table_names():
         "plugin_interview_sessions",
         "plugin_interview_topics",
         "plugin_interview_turns",
+        "plugin_interview_meta",
     }
 
 

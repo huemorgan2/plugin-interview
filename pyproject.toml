@@ -1,6 +1,6 @@
 [project]
 name = "plugin-interview"
-version = "0.1.1"
+version = "0.2.0"
 description = "Adaptive knowledge-elicitation interviews for Luna. Built on luna_sdk v0."
 readme = "README.md"
 license = { text = "MIT" }

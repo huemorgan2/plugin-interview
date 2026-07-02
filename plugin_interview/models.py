@@ -89,8 +89,18 @@ class InterviewTurn(Base):
     )
 
 
+class InterviewMeta(Base):
+    """Tiny key/value store for plugin-local flags (e.g. one-time greetings)."""
+
+    __tablename__ = "plugin_interview_meta"
+
+    key: Mapped[str] = mapped_column(String(64), primary_key=True)
+    value: Mapped[str] = mapped_column(String(256), default="", nullable=False)
+
+
 ALL_TABLES = (
     InterviewSession.__table__,
     InterviewTopic.__table__,
     InterviewTurn.__table__,
+    InterviewMeta.__table__,
 )

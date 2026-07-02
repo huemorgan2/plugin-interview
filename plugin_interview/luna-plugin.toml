@@ -1,12 +1,12 @@
 name = "plugin-interview"
 shown_name = "Interview"
-version = "0.1.3"
+version = "0.2.0"
 description = "Adaptive knowledge-elicitation interviews → structured briefs."
 entry = "plugin_interview"
 sdk_version = "0"
 license = "MIT"
 category = "global"
-db_tables = ["plugin_interview_sessions", "plugin_interview_topics", "plugin_interview_turns"]
+db_tables = ["plugin_interview_sessions", "plugin_interview_topics", "plugin_interview_turns", "plugin_interview_meta"]
 tags = ["interview", "discovery", "briefs"]
 readme = """
 # plugin-interview
@@ -30,7 +30,7 @@ Source: https://github.com/huemorgan/plugin-interview
 
 [requires]
 tools = 9
-tables = 3
+tables = 4
 
 [[tools]]
 name = "interview_start"
